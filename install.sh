@@ -28,14 +28,21 @@ LATEST_WGCF_URL="https://github.com/ViRb3/wgcf/releases/download/v1.0.4/wgcf_1.0
 echo "✅ 下载并安装 wgcf..."
 wget -O wgcf.tar.gz "$LATEST_WGCF_URL"
 
-# 检查下载文件是否成功
+# 检查下载文件是否是 .tar.gz 格式
 if ! file wgcf.tar.gz | grep -q "gzip compressed data"; then
     echo "下载的文件不是正确的 .tar.gz 格式，请检查下载链接是否正确"
     exit 1
 fi
 
 # 解压下载的 tar.gz 文件
+echo "✅ 解压 wgcf.tar.gz..."
 tar zxvf wgcf.tar.gz
+
+# 确保解压成功并且文件存在
+if [ ! -f wgcf ]; then
+    echo "解压后未找到 wgcf 文件，请检查下载文件是否完整"
+    exit 1
+fi
 
 # 赋予执行权限并移动到可执行路径
 chmod +x wgcf
