@@ -1,8 +1,14 @@
 #!/bin/bash
 set -e
 
-echo "✅ 正在安装 warp-cli ..."
+echo "✅ 添加 Cloudflare WARP 官方源 ..."
+curl https://pkg.cloudflareclient.com/pubkey.gpg \
+    | sudo gpg --dearmor -o /usr/share/keyrings/cloudflare-warp-archive-keyring.gpg
+echo 'deb [signed-by=/usr/share/keyrings/cloudflare-warp-archive-keyring.gpg] https://pkg.cloudflareclient.com/ focal main' \
+    | sudo tee /etc/apt/sources.list.d/cloudflare-client.list
 sudo apt update
+
+echo "✅ 安装 warp-cli & dnsmasq ..."
 sudo apt install -y cloudflare-warp dnsmasq
 
 echo "✅ 注册 warp 并连接 ..."
