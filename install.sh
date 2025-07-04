@@ -22,7 +22,7 @@ sudo apt update
 sudo apt install -y curl wget lsb-release gnupg iptables dnsmasq wireguard wireguard-tools resolvconf
 
 # 获取最新的 wgcf 版本下载链接
-LATEST_WGCF_URL="https://github.com/ViRb3/wgcf/releases/latest/download/wgcf_1.0.6_linux_amd64.tar.gz"
+LATEST_WGCF_URL="https://github.com/ViRb3/wgcf/releases/download/v1.0.6/wgcf_1.0.6_linux_amd64.tar.gz"
 
 # 下载 wgcf 并解压
 echo "✅ 下载并安装 wgcf..."
