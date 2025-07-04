@@ -22,7 +22,7 @@ sudo apt update
 sudo apt install -y curl wget lsb-release gnupg iptables dnsmasq wireguard wireguard-tools resolvconf
 
 # 获取 wgcf 版本下载链接（使用你提供的链接）
-LATEST_WGCF_URL="https://github.com/ViRb3/wgcf/releases/download/v2.2.27/wgcf_2.2.27_linux_386.tar.gz"
+LATEST_WGCF_URL="https://github.com/ViRb3/wgcf/archive/refs/tags/v2.2.27.tar.gz"
 
 # 下载 wgcf 并解压
 echo "✅ 下载并安装 wgcf..."
@@ -37,6 +37,9 @@ fi
 # 解压下载的 tar.gz 文件
 echo "✅ 解压 wgcf.tar.gz..."
 tar zxvf wgcf.tar.gz
+
+# 进入解压后的文件夹
+cd wgcf-*
 
 # 确保解压成功并且文件存在
 if [ ! -f wgcf ]; then
