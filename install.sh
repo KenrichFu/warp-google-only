@@ -19,7 +19,7 @@ fi
 
 echo "✅ 安装依赖..."
 sudo apt update
-sudo apt install -y apt-transport-https gnupg curl dnsmasq lsb-release
+sudo apt install -y apt-transport-https gnupg curl dnsmasq lsb-release iptables dnsutils
 
 echo "✅ 添加 Cloudflare WARP 官方源..."
 curl https://pkg.cloudflareclient.com/pubkey.gpg | sudo gpg --dearmor -o /usr/share/keyrings/cloudflare-warp-archive-keyring.gpg
@@ -30,8 +30,10 @@ sudo apt update
 sudo apt install -y cloudflare-warp
 
 echo "✅ 注册并启动 warp..."
-sudo warp-cli register || true
-sudo warp-cli set-mode warp
+if ! warp-cli registration status | grep -q "Registered"; then
+  sudo warp-cli registration create
+fi
+sudo warp-cli proxy set-mode warp
 sudo warp-cli connect
 
 sleep 5
